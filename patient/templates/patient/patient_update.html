@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block title %}Update Patient{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="mb-4 text-primary">Update Patient</h2>
+
+  <form method="POST" novalidate>
+    {% csrf_token %}
+    
+    <div class="mb-3">
+      <label for="id_first_name" class="form-label">First Name</label>
+      {{ form.first_name|add_class:"form-control" }}
+      {% if form.first_name.errors %}
+        <div class="text-danger small">{{ form.first_name.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_last_name" class="form-label">Last Name</label>
+      {{ form.last_name|add_class:"form-control" }}
+      {% if form.last_name.errors %}
+        <div class="text-danger small">{{ form.last_name.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_age" class="form-label">Age</label>
+      {{ form.age|add_class:"form-control" }}
+      {% if form.age.errors %}
+        <div class="text-danger small">{{ form.age.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_gender" class="form-label">Gender</label>
+      {{ form.gender|add_class:"form-select" }}
+      {% if form.gender.errors %}
+        <div class="text-danger small">{{ form.gender.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_address" class="form-label">Address</label>
+      {{ form.address|add_class:"form-control" }}
+      {% if form.address.errors %}
+        <div class="text-danger small">{{ form.address.errors }}</div>
+      {% endif %}
+    </div>
+
+    <div class="mb-3">
+      <label for="id_phone" class="form-label">Phone</label>
+      {{ form.phone|add_class:"form-control" }}
+      {% if form.phone.errors %}
+        <div class="text-danger small">{{ form.phone.errors }}</div>
+      {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Patient</button>
+    <a href="{% url 'patient_list' %}" class="btn btn-secondary ms-2">Cancel</a>
+  </form>
+</div>
+{% endblock %}

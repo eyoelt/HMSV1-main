@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}Create New Patient{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow-lg rounded-4">
+    <div class="card-header bg-primary text-white">
+      <h4 class="mb-0"><i class="bi bi-person-plus-fill me-2"></i>Create New Patient</h4>
+    </div>
+{% load widget_tweaks %}
+
+    <div class="card-body">
+      <form method="POST" novalidate>
+        {% csrf_token %}
+
+        <div class="row mb-3">
+          <div class="col-md-6">
+            <label class="form-label">First Name</label>
+            {{ form.first_name|add_class:"form-control" }}
+            {% if form.first_name.errors %}
+              <div class="text-danger small">{{ form.first_name.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Last Name</label>
+            {{ form.last_name|add_class:"form-control" }}
+            {% if form.last_name.errors %}
+              <div class="text-danger small">{{ form.last_name.errors }}</div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-md-4">
+            <label class="form-label">Age</label>
+            {{ form.age|add_class:"form-control" }}
+            {% if form.age.errors %}
+              <div class="text-danger small">{{ form.age.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Gender</label>
+            {{ form.gender|add_class:"form-select" }}
+            {% if form.gender.errors %}
+              <div class="text-danger small">{{ form.gender.errors }}</div>
+            {% endif %}
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label">Phone</label>
+            {{ form.phone|add_class:"form-control" }}
+            {% if form.phone.errors %}
+              <div class="text-danger small">{{ form.phone.errors }}</div>
+            {% endif %}
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Address</label>
+          {{ form.address|add_class:"form-control" }}
+          {% if form.address.errors %}
+            <div class="text-danger small">{{ form.address.errors }}</div>
+          {% endif %}
+        </div>
+
+        <div class="d-flex justify-content-between">
+          <button type="submit" class="btn btn-success px-4"><i class="bi bi-check-circle me-1"></i>Save</button>
+          <a href="{% url 'patient_list' %}" class="btn btn-secondary"><i class="bi bi-arrow-left me-1"></i>Cancel</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
